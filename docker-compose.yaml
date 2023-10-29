@@ -1,0 +1,9 @@
+services:
+  im_productive_bot:
+    build: .
+    volumes:
+      - .:/home/im_productive_bot
+    env_file:
+      - tokens.env
+    restart: always
+    
