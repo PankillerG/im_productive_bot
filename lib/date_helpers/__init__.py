@@ -8,7 +8,7 @@ def get_timestamp(timestamp=None):
 
 def is_days_equal(first_timestamp, second_timestamp):
     datetime.fromtimestamp(first_timestamp).date == \
-        datetime.fromtimestamp(second_timestamp)
+        datetime.fromtimestamp(second_timestamp).date
 
 
 def is_weeks_equal(first_timestamp, second_timestamp):
