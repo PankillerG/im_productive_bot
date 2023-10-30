@@ -7,17 +7,17 @@ def get_timestamp(timestamp=None):
 
 
 def is_days_equal(first_timestamp, second_timestamp):
-    datetime.fromtimestamp(first_timestamp).date == \
-        datetime.fromtimestamp(second_timestamp).date
+    return datetime.fromtimestamp(first_timestamp).day == \
+        datetime.fromtimestamp(second_timestamp).day
 
 
 def is_weeks_equal(first_timestamp, second_timestamp):
-    datetime.fromtimestamp(first_timestamp).isocalendar().week == \
+    return datetime.fromtimestamp(first_timestamp).isocalendar().week == \
         datetime.fromtimestamp(second_timestamp).isocalendar().week
 
 
 def is_months_equal(first_timestamp, second_timestamp):
-    datetime.fromtimestamp(first_timestamp).month == \
+    return datetime.fromtimestamp(first_timestamp).month == \
         datetime.fromtimestamp(second_timestamp).month
 
 
@@ -28,3 +28,4 @@ def is_periods_equal(first_timestamp, second_timestamp, period):
         return is_weeks_equal(first_timestamp, second_timestamp)
     elif period == 'months':
         return is_months_equal(first_timestamp, second_timestamp)
+    return False
