@@ -11,6 +11,10 @@ waiting_habit_name_to_add = """
 Write the habit name:
 """
 
+waiting_habit_time_of_day_to_add = """
+Select time of day for doing habit {habit_name}:
+"""
+
 show_habits_not_empty = """
 Your habits:
 """
@@ -34,6 +38,7 @@ Select repeat count for {habit_name} per {habit_repeat_period}
 habit_was_added = """
 Habit was added:
 Name: {habit_name}
+Time of day: {habit_time_of_day}
 Repeat period: {habit_repeat_period}
 Repeat count: {habit_repeat_count}
 

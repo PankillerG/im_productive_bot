@@ -10,6 +10,7 @@ class StateFiels:
 class ConvStatuses:
     default = None
     waiting_habit_name_to_add = 'waiting_habit_name_to_add'
+    waiting_habit_time_of_day_to_add = 'waiting_habit_time_of_day_to_add'
     waiting_habit_repeat_period_to_add = 'waiting_habit_repeat_period_to_add'
     waiting_habit_repeat_count_to_add = 'waiting_habit_repeat_count_to_add'
     show_habits = 'show_habits'

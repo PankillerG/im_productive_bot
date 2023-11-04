@@ -6,6 +6,7 @@ class BotDataFields:
 
 class ConvDataFields:
     habit_name = 'habit_name'
+    habit_time_of_day = 'habit_time_of_day'
     habit_repeat_period = 'habit_repeat_period'
     habit_repeat_count = 'habit_repeat_count'
     show_habits_message_id = 'show_habits_message_id'

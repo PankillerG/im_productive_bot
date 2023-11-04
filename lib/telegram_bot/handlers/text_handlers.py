@@ -37,9 +37,9 @@ async def text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         state_client.set_conv_status(
             user_id=user_id,
-            status=ConvStatuses.waiting_habit_repeat_period_to_add,
+            status=ConvStatuses.waiting_habit_time_of_day_to_add,
         )
         await update.message.reply_text(
-            text=texts.waiting_habit_repeat_period_to_add.format(habit_name=habit_name),
-            reply_markup=InlineKeyboardMarkup(keyboards.waiting_habit_repeat_period_to_add),
+            text=texts.waiting_habit_time_of_day_to_add.format(habit_name=habit_name),
+            reply_markup=InlineKeyboardMarkup(keyboards.waiting_habit_time_of_day_to_add),
         )

@@ -9,6 +9,12 @@ from lib.logging_helpers import get_function_logger
 logger = logging.getLogger(__name__)
 function_logger = get_function_logger(logger)
 
+time_of_day_name_to_id = {
+    'morning': 0,
+    'afternoon': 1,
+    'evening': 2,
+}
+
 
 class RepeatPeriods:
     day = 'day'
@@ -19,6 +25,7 @@ class RepeatPeriods:
 class HabitFields:
     id = 'id'
     name = 'name'
+    time_of_day = 'time_of_day'
     repeat_period = 'repeat_period'
     repeat_count = 'repeat_count'
     done_count = 'done_count'
@@ -31,10 +38,22 @@ def generate_habit_id():
 
 
 @function_logger
-def create_habit(name: str, repeat_period: str, repeat_count: int):
+def get_habit_time_of_day_id(time_of_day: str):
+    return time_of_day_name_to_id[time_of_day]
+
+
+@function_logger
+def get_habit_sort_key(habit: dict):
+    habit_time_of_day_id = get_habit_time_of_day_id(habit[HabitFields.time_of_day])
+    return f'{habit_time_of_day_id}__{habit[HabitFields.name]}'
+    
+
+@function_logger
+def create_habit(name: str, time_of_day: str, repeat_period: str, repeat_count: int):
     return {
         HabitFields.id: generate_habit_id(),
         HabitFields.name: name,
+        HabitFields.time_of_day: time_of_day,
         HabitFields.repeat_period: repeat_period,
         HabitFields.repeat_count: repeat_count,
         HabitFields.done_count: 0,

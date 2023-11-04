@@ -31,6 +31,23 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = query.from_user.id
     conv_status = state_client.get_conv_status(user_id)
 
+    if conv_status == ConvStatuses.waiting_habit_time_of_day_to_add:
+        habit_name = state_client.get_conv_data_value(user_id, ConvDataFields.habit_name)
+        habit_time_of_day = query.data
+        state_client.set_conv_data_value(
+            user_id=user_id,
+            key=ConvDataFields.habit_time_of_day,
+            value=habit_time_of_day,
+        )
+        state_client.set_conv_status(
+            user_id=user_id,
+            status=ConvStatuses.waiting_habit_repeat_period_to_add,
+        )
+        await query.edit_message_text(
+            text=texts.waiting_habit_repeat_period_to_add.format(habit_name=habit_name),
+            reply_markup=InlineKeyboardMarkup(keyboards.waiting_habit_repeat_period_to_add),
+        )
+
     if conv_status == ConvStatuses.waiting_habit_repeat_period_to_add:
         habit_name = state_client.get_conv_data_value(user_id, ConvDataFields.habit_name)
         habit_repeat_period = query.data
@@ -52,12 +69,14 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         )
 
     elif conv_status == ConvStatuses.waiting_habit_repeat_count_to_add:
-        habit_name=state_client.get_conv_data_value(user_id, ConvDataFields.habit_name)
-        habit_repeat_period=state_client.get_conv_data_value(user_id, ConvDataFields.habit_repeat_period)
+        habit_name = state_client.get_conv_data_value(user_id, ConvDataFields.habit_name)
+        habit_time_of_day = state_client.get_conv_data_value(user_id, ConvDataFields.habit_time_of_day)
+        habit_repeat_period = state_client.get_conv_data_value(user_id, ConvDataFields.habit_repeat_period)
         habit_repeat_count = int(query.data)
         state_client.add_habit(
             user_id=user_id,
             name=habit_name,
+            time_of_day=habit_time_of_day,
             repeat_period=habit_repeat_period,
             repeat_count=habit_repeat_count,
         )
@@ -67,6 +86,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         )
         await query.edit_message_text(texts.habit_was_added.format(
             habit_name=habit_name,
+            habit_time_of_day=habit_time_of_day,
             habit_repeat_period=habit_repeat_period,
             habit_repeat_count=habit_repeat_count,
         ))

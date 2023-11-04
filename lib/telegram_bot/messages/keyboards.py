@@ -1,6 +1,14 @@
 from telegram import InlineKeyboardButton
 
 
+waiting_habit_time_of_day_to_add = [
+    [
+        InlineKeyboardButton('Morning', callback_data='morning'),
+        InlineKeyboardButton('Afternoon', callback_data='afternoon'),
+        InlineKeyboardButton('Evening', callback_data='evening'),
+    ],
+]
+
 waiting_habit_repeat_period_to_add = [
     [
         InlineKeyboardButton('Day', callback_data='days'),

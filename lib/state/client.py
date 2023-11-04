@@ -11,6 +11,7 @@ from lib.date_helpers import get_timestamp
 from lib.logging_helpers import get_function_logger
 from lib.state.habit import (
     create_habit,
+    get_habit_sort_key,
     HabitFields,
     need_reset_habit,
 )
@@ -136,11 +137,12 @@ class StateClient:
         self,
         user_id: Union[int, str],
         name: str,
+        time_of_day : str,
         repeat_period: str,
         repeat_count: int,
     ):
         user_id = str(user_id)
-        habit = create_habit(name, repeat_period, repeat_count)
+        habit = create_habit(name, time_of_day, repeat_period, repeat_count)
         self.state[user_id][StateFiels.habits][habit[HabitFields.id]] = habit
         self.set_habits_timestamp(user_id)
 
@@ -154,7 +156,7 @@ class StateClient:
     def get_habits(self, user_id: Union[int, str], actual: bool=True):
         habits = list(sorted(
             self.state[str(user_id)][StateFiels.habits].values(),
-            key=lambda habit: habit[HabitFields.name],
+            key=lambda habit: get_habit_sort_key(habit),
         ))
         if actual:
             habits = list(filter(
