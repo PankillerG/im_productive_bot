@@ -152,7 +152,10 @@ class StateClient:
     
     @function_logger
     def get_habits(self, user_id: Union[int, str], actual: bool=True):
-        habits = list(self.state[str(user_id)][StateFiels.habits].values())
+        habits = list(sorted(
+            self.state[str(user_id)][StateFiels.habits].values(),
+            key=lambda habit: habit[HabitFields.name],
+        ))
         if actual:
             habits = list(filter(
                 lambda habit: habit[HabitFields.done_count] < habit[HabitFields.repeat_count],
