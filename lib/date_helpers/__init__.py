@@ -22,10 +22,10 @@ def is_months_equal(first_timestamp, second_timestamp):
 
 
 def is_periods_equal(first_timestamp, second_timestamp, period):
-    if period == 'days':
+    if period == 'day':
         return is_days_equal(first_timestamp, second_timestamp)
-    elif period == 'weeks':
+    elif period == 'week':
         return is_weeks_equal(first_timestamp, second_timestamp)
-    elif period == 'months':
+    elif period == 'month':
         return is_months_equal(first_timestamp, second_timestamp)
     return False
