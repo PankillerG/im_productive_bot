@@ -11,9 +11,9 @@ waiting_habit_time_of_day_to_add = [
 
 waiting_habit_repeat_period_to_add = [
     [
-        InlineKeyboardButton('Day', callback_data='days'),
-        InlineKeyboardButton('Week', callback_data='weeks'),
-        InlineKeyboardButton('Month', callback_data='months'),
+        InlineKeyboardButton('Day', callback_data='day'),
+        InlineKeyboardButton('Week', callback_data='week'),
+        InlineKeyboardButton('Month', callback_data='month'),
     ],
 ]
 
