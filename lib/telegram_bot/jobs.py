@@ -28,14 +28,10 @@ async def dump_state(context: ContextTypes.DEFAULT_TYPE):
 
 
 @function_logger
-async def make_state_actual(context: ContextTypes.DEFAULT_TYPE):
+async def show_actual_habits(context: ContextTypes.DEFAULT_TYPE):
     state_client = context.bot_data[BotDataFields.state_client]
     state_client.make_state_actual()
 
-
-@function_logger
-async def show_actual_habits(context: ContextTypes.DEFAULT_TYPE):
-    state_client = context.bot_data[BotDataFields.state_client]
     prev_timestamp = context.bot_data[BotDataFields.jobs_data].get(
         JobsDataFields.show_actual_habits_timetamp,
         None,

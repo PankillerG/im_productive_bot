@@ -58,11 +58,6 @@ class Bot:
             first=config.Jobs.DumpState.first,
         )
         self.application.job_queue.run_repeating(
-            jobs.make_state_actual,
-            interval=config.Jobs.MakeStateActual.interval,
-            first=config.Jobs.MakeStateActual.first,
-        )
-        self.application.job_queue.run_repeating(
             jobs.show_actual_habits,
             interval=config.Jobs.ShowActualHabits.interval,
             first=config.Jobs.ShowActualHabits.first,

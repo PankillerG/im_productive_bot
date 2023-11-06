@@ -10,11 +10,7 @@ class Jobs:
     class DumpState:
         interval = 40
         first = 40
-
-    class MakeStateActual:
-        interval = 60
-        first = 60
     
     class ShowActualHabits:
-        interval = 55
-        first = 55
+        interval = 60
+        first = 60
